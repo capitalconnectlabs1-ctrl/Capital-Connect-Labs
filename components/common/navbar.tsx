@@ -22,6 +22,10 @@ const navLinks = [
     label: "Our Team",
     href: "/#team",
   },
+  {
+    label: "Privacy Policy",
+    href: "/privacy-policies",
+  },
 ];
 
 export default function Navbar() {

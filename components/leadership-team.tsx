@@ -22,7 +22,7 @@ const teamMembers = [
     name: "Kshitij Deshmukh",
     role: "Vice President — Investment Management",
     desc: "8+ years of expertise across alternative investments, lending structures, and financial operations.",
-    imgSrc: "/kshitij-deshmukh.webp",
+    imgSrc: "/kshitij-deshmukh.png",
   },
 ];
 
@@ -71,8 +71,8 @@ export default function LeadershipTeam() {
                 src={member.imgSrc}
                 alt={member.name}
                 fill
-                sizes="(max-w-7xl) 33vw"
-                className="object-cover group-hover:scale-110 transition-all duration-500 ease-out"
+                sizes="(max-w-7xl) 32vw"
+                className="object-cover object-top group-hover:scale-110 transition-all duration-500 ease-out"
               />
             </div>
             <div className="p-5 sm:p-6 flex flex-col justify-between flex-1 min-h-48 gap-4">
