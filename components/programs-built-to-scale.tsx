@@ -89,7 +89,7 @@ export default function ProgramsBuiltToScale() {
                 >
                   {program.title}
                 </h3>
-                <p className="text-muted text-xs font-normal tracking-wide">
+                <p className="text-muted text-sm font-normal tracking-wide">
                   {program.subLabel}
                 </p>
               </div>
@@ -98,7 +98,7 @@ export default function ProgramsBuiltToScale() {
                 {program.features.map((feature, fIdx) => (
                   <li
                     key={fIdx}
-                    className="flex items-start gap-2 lg:gap-3 text-xs md:text-sm text-foreground/90 leading-relaxed font-light"
+                    className="flex items-start gap-2 lg:gap-3 text-xs md:text-base text-foreground/90 leading-relaxed font-light"
                   >
                     <Check className="w-4 h-4 text-brand shrink-0 mt-0.5 stroke-3" />
                     <span>{feature}</span>

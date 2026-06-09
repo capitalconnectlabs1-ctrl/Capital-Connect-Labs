@@ -16,7 +16,7 @@ export default function Button({
   ...props
 }: ButtonProps) {
   const baseStyle =
-    "px-4 md:px-7 py-2 md:py-3.5 rounded-full text-xs font-bold tracking-wide transition-all duration-200 w-full sm:w-auto inline-flex items-center justify-center cursor-pointer font-sans";
+    "px-4 md:px-7 py-2 md:py-3.5 rounded-full text-sm md:text-base font-bold tracking-wide transition-all duration-200 w-full sm:w-auto inline-flex items-center justify-center cursor-pointer font-sans";
   const variants = {
     primary:
       "bg-brand text-background hover:opacity-95 shadow-[0_4px_20px_rgba(163,220,47,0.25)]",
