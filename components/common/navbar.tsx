@@ -5,27 +5,13 @@ import Image from "next/image";
 import Link from "next/link";
 import Button from "./button";
 
-const navLinks = [
-  {
-    label: "About",
-    href: "/about-us",
-  },
-  {
-    label: "Programs",
-    href: "/#programs",
-  },
-  {
-    label: "Why CCL",
-    href: "/#risk",
-  },
-  {
-    label: "Our Team",
-    href: "/#team",
-  },
-  {
-    label: "Privacy Policy",
-    href: "/privacy-policies",
-  },
+const NAV_LINKS = [
+  { label: "About Us", href: "/about-us" },
+  { label: "Problem Statement", href: "/problem-statement" },
+  { label: "For Founder", href: "/for-founder" },
+  { label: "For Investor", href: "/for-investor" },
+  { label: "Our Team", href: "/our-team" },
+  { label: "Privacy Policy", href: "/privacy-policies" },
 ];
 
 export default function Navbar() {
@@ -45,8 +31,9 @@ export default function Navbar() {
               priority
             />
           </Link>
-          <div className="hidden md:flex items-center gap-8 text-muted font-medium">
-            {navLinks.map((link) => (
+
+          <div className="hidden lg:flex items-center gap-8 text-muted font-medium">
+            {NAV_LINKS.map((link) => (
               <Link
                 key={link.label}
                 href={link.href}
@@ -57,8 +44,7 @@ export default function Navbar() {
             ))}
           </div>
 
-          {/* Desktop CTA */}
-          <div className="hidden md:flex items-center">
+          <div className="hidden lg:flex items-center">
             <Link href="/customer-support">
               <Button variant="primary" className="px-5 py-2.5">
                 Get started
@@ -66,10 +52,9 @@ export default function Navbar() {
             </Link>
           </div>
 
-          {/* Mobile Toggle */}
           <button
             onClick={() => setIsOpen((prev) => !prev)}
-            className="md:hidden text-muted hover:text-white-pure p-2 border bg-gray-2 border-gray-1 rounded-lg"
+            className="lg:hidden text-muted hover:text-white-pure p-2 border bg-gray-2 border-gray-1 rounded-lg"
             aria-label="Toggle menu"
           >
             <svg
@@ -105,10 +90,10 @@ export default function Navbar() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -16 }}
             transition={{ duration: 0.25 }}
-            className="md:hidden fixed top-28 left-1/2 -translate-x-1/2 z-999 w-[88%] rounded-xl border border-gray-1 bg-[#0F0F0F] px-5 py-5 shadow-xl"
+            className="lg:hidden fixed top-28 left-1/2 -translate-x-1/2 z-999 w-[calc(100vw-48px)] rounded-xl border border-gray-1 bg-[#0F0F0F] px-5 py-5 shadow-xl"
           >
             <div className="flex flex-col gap-4 text-muted font-medium">
-              {navLinks.map((link) => (
+              {NAV_LINKS.map((link) => (
                 <Link
                   key={link.label}
                   href={link.href}
@@ -118,7 +103,6 @@ export default function Navbar() {
                   {link.label}
                 </Link>
               ))}
-
               <Link
                 href="/customer-support"
                 onClick={() => setIsOpen(false)}

@@ -1,0 +1,69 @@
+export const TEAM_MEMBERS = [
+  {
+    id: "sathyan-gopalan",
+    name: "Sathyan Gopalan",
+    role: "Co-Founder & CEO",
+    imgSrc: "/sathyan-gopalan.webp",
+    desc: "Sathyan Gopalan is a seasoned business and technology leader with over 35 years of experience in IT, banking, and financial technology. He has held leadership roles across leading global organizations including Oracle, Wincor Nixdorf, and Vortex Engineering.",
+    bio: "Sathyan Gopalan is a seasoned business and technology leader with over 35 years of experience in IT, banking, and financial technology. He has held leadership roles across leading global organizations including Oracle, Wincor Nixdorf, and Vortex Engineering.",
+    highlights: [
+      "CEO, Vortex Engineering (2014–2025)",
+      "Former Managing Director, Wincor Nixdorf India",
+      "Sales Director, South Asia – Oracle Financial Services",
+      "Leadership roles at CA Technologies, Wipro, Tata Unisys",
+    ],
+    strengths: [
+      "Enterprise scaling & go-to-market strategy",
+      "Leadership & revenue growth in Fintech & banking systems",
+      "Managed multiple investment rounds & strategic exits",
+    ],
+  },
+  {
+    id: "indranil-roy",
+    name: "Indranil Roy",
+    role: "Co-Founder & COO",
+    imgSrc: "/indranil-roy.webp",
+    desc: "Indranil Roy is an entrepreneur, startup founder, and product strategist with extensive experience in building and scaling technology-driven businesses. He has successfully raised capital from angel investors and HNIs, managed startup finances, and built strong relationships across the startup and investment ecosystem.",
+    bio: "Indranil Roy is an entrepreneur, startup founder, and product strategist with extensive experience in building and scaling technology-driven businesses. As the founder of an IT company and multiple startups, including ventures in modern agricultural technology, he has developed expertise in product development, fundraising, business operations, and growth strategy. He has successfully raised capital from angel investors and HNIs, managed startup finances, and built strong relationships across the startup and investment ecosystem. His practical experience enables him to identify high-potential ventures and support founders in transforming ideas into scalable businesses.",
+    highlights: [
+      "Founder of a successful IT services company",
+      "Founded and scaled multiple startups across technology and agritech sectors",
+      "Successfully raised investments from angel investors and HNIs",
+      "Strong track record in investor relations and financial management",
+      "Extensive experience in product design, startup operations, and business strategy",
+      "Well-connected with investors, financial institutions, and startup networks",
+    ],
+    strengths: [
+      "Startup Evaluation & Growth Strategy",
+      "Product Design & Product Management",
+      "Fundraising & Investor Relations",
+      "Financial Planning & Business Operations",
+      "Market Validation & Go-to-Market Strategy",
+      "Mentorship for Early-Stage Startups",
+      "Strategic Partnerships & Ecosystem Building",
+    ],
+  },
+  {
+    id: "kshitij-deshmukh",
+    name: "Kshitij Deshmukh",
+    role: "Vice President — Investment Management",
+    imgSrc: "/kshitij-deshmukh.png",
+    desc: "Kshitij Deshmukh is an investment and strategy professional with experience across alternative investments, lending, financial operations, and venture evaluation. He combines strong analytical capabilities with an execution-oriented mindset, bringing expertise in startup assessment, investment analysis, ecosystem building, and strategic growth.",
+    bio: "Kshitij Deshmukh is an investment and strategy professional with experience across alternative investments, lending, financial operations, and venture evaluation. He combines strong analytical capabilities with an execution-oriented mindset, bringing expertise in startup assessment, investment analysis, ecosystem building, and strategic growth.",
+    highlights: [
+      "8+ years of experience across alternative investments, lending, and financial operations",
+      "Senior Manager at a FinTech, supporting strategic initiatives within the Media & Entertainment sector",
+      "Experience in venture evaluation, financial analysis, due diligence, and investment operations",
+      "Led process design, operational improvements, and analytical initiatives across high-growth environments",
+      "Active contributor to startup ecosystem development, founder engagement, and early-stage opportunity sourcing",
+    ],
+    strengths: [
+      "Capital Markets & Alternative Investments",
+      "Portfolio Monitoring & Risk Assessment",
+      "Strategic Growth & Business Analysis",
+      "Founder & Investor Ecosystem Development",
+    ],
+  },
+];
+
+export type TeamMember = (typeof TEAM_MEMBERS)[number];

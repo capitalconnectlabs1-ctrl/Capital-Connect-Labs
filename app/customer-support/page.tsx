@@ -14,12 +14,10 @@ import {
   ArrowLeft,
   Contact2,
 } from "lucide-react";
-import Image from "next/image";
-import Badge from "@/components/common/badge";
 import Button from "@/components/common/button";
-import Link from "next/link";
 import SectionHeader from "@/components/common/section-header";
 import Footer from "@/components/common/footer";
+import Navbar from "@/components/common/navbar";
 
 function SupportFormContent() {
   const router = useRouter();
@@ -37,37 +35,6 @@ function SupportFormContent() {
   const emailInputId = useId();
   const subjectInputId = useId();
   const messageInputId = useId();
-
-  useEffect(() => {
-    const inquiryType = searchParams.get("inquiry");
-    if (inquiryType) {
-      if (inquiryType === "incubator") {
-        setFormState((prev) => ({
-          ...prev,
-          subject: "Incubator Program Batch Application",
-          message:
-            "Hello team, I would like to submit my venture architecture for the upcoming Incubator batch evaluation program.",
-        }));
-      } else if (inquiryType === "accelerator") {
-        setFormState((prev) => ({
-          ...prev,
-          subject: "Accelerator Scaling Cohort Request",
-          message:
-            "Hello team, we are ready to scale our operations. We would like to initiate an interface sequence for our fundraising pitch decks and modeling maps.",
-        }));
-      } else if (inquiryType === "advisory") {
-        setFormState((prev) => ({
-          ...prev,
-          subject: "Custom Bespoke Advisory Inquiries",
-          message:
-            "Hello team, we want to inquire about custom co-investment frameworks and corporate innovation mapping frameworks.",
-        }));
-      }
-      console.log(
-        `Context mapping loaded dynamically for parameter state: [${inquiryType}]`,
-      );
-    }
-  }, [searchParams]);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -295,48 +262,34 @@ function SupportFormContent() {
 
 export default function CustomerSupportPage() {
   return (
-    <main className="relative min-h-screen bg-background overflow-hidden pb-16">
-      <div className="absolute top-[10%] right-[-10%] size-140 bg-radial-glow pointer-events-none z-0 opacity-60" />
-      <div className="absolute bottom-[10%] left-[-15%] size-150 rounded-xl bg-accent-mint/10 blur-[150px] pointer-events-none z-0 mix-blend-screen opacity-50" />
+    <>
+      <div className="sticky top-0 z-1000 container pt-6">
+        <Navbar />
+      </div>
+      <main className="relative py-30 min-h-screen bg-background overflow-hidden">
+        <div className="absolute top-[10%] right-[-10%] size-140 bg-radial-glow pointer-events-none z-0 opacity-60" />
+        <div className="absolute bottom-[10%] left-[-15%] size-150 rounded-xl bg-accent-mint/10 blur-[150px] pointer-events-none z-0 mix-blend-screen opacity-50" />
 
-      <div className="container relative z-10">
-        <div className="flex items-center justify-between w-full mx-auto mb-16 border-b border-gray-2/30 py-4 lg:py-6">
-          <Link className="text-muted flex items-center gap-2" href={"/"}>
-            <ArrowLeft className="size-5 transition-transform group-hover:-translate-x-0.5" />
-            <span>Back to home</span>
-          </Link>
+        <div className="container relative z-10">
+          <SectionHeader
+            badgeText="24/7 Concierge Desk"
+            badgeIcon={Contact2}
+            title="How can we help your startup?"
+            subtitle="Whether you are a founder looking for program details or an investor seeking access to our deal-flow dashboard, our team is ready to assist."
+          />
 
-          <Link href={"/"} className="relative size-10 lg:size-12">
-            <Image
-              src="/logo.svg"
-              alt="Capital Connect Labs Logo"
-              fill
-              className="object-contain"
-              priority
-            />
-          </Link>
+          <Suspense
+            fallback={
+              <div className="text-center text-muted py-12">
+                Loading workspace metrics...
+              </div>
+            }
+          >
+            <SupportFormContent />
+          </Suspense>
         </div>
-
-        <SectionHeader
-          badgeText="24/7 Concierge Desk"
-          badgeIcon={Contact2}
-          title="How can we help your startup?"
-          subtitle="Whether you are a founder looking for program details or an investor seeking access to our deal-flow dashboard, our team is ready to assist."
-        />
-
-        <Suspense
-          fallback={
-            <div className="text-center text-muted py-12">
-              Loading workspace metrics...
-            </div>
-          }
-        >
-          <SupportFormContent />
-        </Suspense>
-      </div>
-      <div className="mt-16">
-        <Footer />
-      </div>
-    </main>
+      </main>
+      <Footer />
+    </>
   );
 }

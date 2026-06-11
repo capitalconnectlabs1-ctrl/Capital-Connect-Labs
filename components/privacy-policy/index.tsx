@@ -2,29 +2,16 @@
 import Link from "next/link";
 import { ArrowLeft, FileText } from "lucide-react";
 import Image from "next/image";
+import Navbar from "../common/navbar";
+import Footer from "../common/footer";
 
 export default function PrivacyPolicyPage() {
   return (
     <main className="min-h-screen text-foreground font-sans pb-24">
-      <div className="flex container items-center justify-between w-full mx-auto mb-16 border-b border-gray-2/30 py-4 lg:py-6">
-        <Link className="text-muted flex items-center gap-2" href={"/"}>
-          <ArrowLeft className="size-5 transition-transform group-hover:-translate-x-0.5" />
-          <span>Back to home</span>
-        </Link>
-        <Link href={"/"} className="relative size-10 lg:size-12">
-          <Image
-            src="/logo.svg"
-            alt="Capital Connect Labs Logo"
-            fill
-            className="object-contain"
-            priority
-          />
-        </Link>
+      <div className="sticky top-0 z-1000 container pt-6">
+        <Navbar />
       </div>
       <article className="container mt-16 space-y-4 lg:space-y-12">
-        <h2 className="text-3xl md:text-4xl font-bold text-foreground tracking-tight">
-          Privacy Policies
-        </h2>
         <div className="space-y-10">
           <section className="space-y-3">
             <h2 className="text-lg font-bold text-white-100 flex items-center gap-2">
@@ -203,11 +190,10 @@ export default function PrivacyPolicyPage() {
             </div>
           </section>
         </div>
-        <div className="text-xs text-muted/30 pt-4 flex gap-1.5">
-          <FileText className="size-3" />
-          <span>END OF POLICY</span>
-        </div>
       </article>
+      <div className="pt-30">
+        <Footer />
+      </div>
     </main>
   );
 }

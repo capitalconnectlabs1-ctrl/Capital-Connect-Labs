@@ -6,7 +6,7 @@ interface SectionHeaderProps {
   badgeText: string;
   badgeIcon: React.ComponentType<{ className?: string }>;
   title: string;
-  subtitle: string;
+  subtitle?: string;
   className?: string;
 }
 

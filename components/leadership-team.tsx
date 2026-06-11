@@ -2,35 +2,16 @@
 
 import { motion } from "framer-motion";
 import Image from "next/image";
+import Link from "next/link";
 import Badge from "./common/badge";
-import { Group } from "lucide-react";
-
-const teamMembers = [
-  {
-    name: "Sathyan Gopalan",
-    role: "Co-Founder & CEO",
-    desc: "Held critical South Asia leadership roles across Oracle Financial Services, Wipro, and Tata Unisys.",
-    imgSrc: "/sathyan-gopalan.webp",
-  },
-  {
-    name: "Indranil Roy",
-    role: "Co-Founder & COO",
-    desc: "Core Expertise: Startup evaluation, market validation, product management, and early-stage mentorship",
-    imgSrc: "/indranil-roy.webp",
-  },
-  {
-    name: "Kshitij Deshmukh",
-    role: "Vice President — Investment Management",
-    desc: "8+ years of expertise across alternative investments, lending structures, and financial operations.",
-    imgSrc: "/kshitij-deshmukh.png",
-  },
-];
+import { Group, ArrowRight } from "lucide-react";
+import { TEAM_MEMBERS } from "@/utils/our-team";
 
 export default function LeadershipTeam() {
   return (
     <section
       id="team"
-      className="w-full scroll-mt-32 space-y-4 lg:space-y-6 py-16 relative overflow-hidden container"
+      className="w-full scroll-mt-32 space-y-4 lg:space-y-6 pb-30 relative overflow-hidden container"
     >
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-4 lg:gap-8 bg-gray-1 border border-gray-2 rounded-2xl p-5 lg:p-10 items-center">
         <div className="lg:col-span-7 space-y-4 md:pr-4">
@@ -51,16 +32,17 @@ export default function LeadershipTeam() {
         <div className="lg:col-span-5 w-full h-65 md:h-100 relative rounded-2xl overflow-hidden border border-gray-2/40">
           <Image
             src="/leadershipteam.webp"
-            alt="Capital Connect Labs Workspace Session"
+            alt="Capital Connect Labs Leadership Team"
             fill
-            sizes="(max-w-7xl) 50vw"
+            sizes="(max-width: 1280px) 50vw, 40vw"
             className="object-cover"
             priority
           />
         </div>
       </div>
+
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4 lg:gap-6">
-        {teamMembers.map((member, idx) => (
+        {TEAM_MEMBERS.map((member, idx) => (
           <motion.div
             key={idx}
             transition={{ duration: 0.25 }}
@@ -71,22 +53,30 @@ export default function LeadershipTeam() {
                 src={member.imgSrc}
                 alt={member.name}
                 fill
-                sizes="(max-w-7xl) 32vw"
+                sizes="(max-width: 768px) 100vw, 32vw"
                 className="object-cover object-top group-hover:scale-110 transition-all duration-500 ease-out"
               />
             </div>
-            <div className="p-5 sm:p-6 flex flex-col justify-between flex-1 min-h-48 gap-4">
+            <div className="p-5 sm:p-6 flex flex-col justify-between flex-1 gap-4">
               <div className="space-y-2">
                 <h3 className="text-xl font-bold text-foreground tracking-tight">
                   {member.name}
                 </h3>
-                <p className="text-muted text-base font-light leading-normal">
+                <p className="text-muted text-sm font-light leading-relaxed line-clamp-3">
                   {member.desc}
                 </p>
               </div>
 
-              <div className="text-brand font-medium text-xs md:text-[13px] tracking-wide font-sans">
-                {member.role}
+              <div className="flex items-center justify-between gap-2 pt-1">
+                <span className="text-brand font-medium text-sm md:text-base tracking-wide">
+                  {member.role}
+                </span>
+                <Link
+                  href={`/our-team/${member.id}`}
+                  className="inline-flex items-center gap-1 text-sm md:text-base font-semibold text-brand hover:text-brand/70 transition-colors shrink-0"
+                >
+                  Read More <ArrowRight className="size-6 -rotate-45" />
+                </Link>
               </div>
             </div>
           </motion.div>

@@ -4,6 +4,7 @@ import Link from "next/link";
 import Badge from "./common/badge";
 import Button from "./common/button";
 import Image from "next/image";
+import HighlightWords from "./common/animated-headline";
 
 export default function Hero() {
   const handlePartnerScrollSequence = () => {
@@ -25,9 +26,9 @@ export default function Hero() {
   return (
     <section
       id="hero"
-      className="relative scroll-mt-32 min-h-[calc(100vh-106px)] overflow-hidden flex gap-24 py-24 flex-col items-center justify-center text-center"
+      className="relative overflow-hidden scroll-mt-32 lg:min-h-[calc(100vh-106px)] flex gap-24 py-24 flex-col items-center justify-center text-center"
     >
-      <div className="absolute -top-30 lg:top-0 left-1/2 -translate-x-1/2 size-225 bg-radial-glow pointer-events-none z-0 opacity-75" />
+      <div className="absolute top-0 lg:-top-40 left-1/2 -translate-x-1/2 size-100 lg:size-225 bg-radial-glow pointer-events-none z-0 opacity-75" />
       <motion.div
         initial="hidden"
         animate="visible"
@@ -35,7 +36,7 @@ export default function Hero() {
           hidden: { opacity: 0 },
           visible: { opacity: 1, transition: { staggerChildren: 0.12 } },
         }}
-        className="max-w-4xl mx-auto px-4 relative z-10 flex flex-col items-center"
+        className="container relative z-10 flex flex-col items-center"
       >
         <motion.div
           variants={{
@@ -44,16 +45,11 @@ export default function Hero() {
           }}
           className="mb-4 lg:mb-8"
         >
-          <Link
-            href="/customer-support?inquiry=incubator"
-            className="block cursor-pointer"
-          >
-            <Badge
-              pillText="New"
-              text="Empowering early-stage startups"
-              showArrow={true}
-            />
-          </Link>
+          <Badge
+            pillText="CCL"
+            text="Empowering early-stage startups"
+            showArrow={true}
+          />
         </motion.div>
 
         <motion.h1
@@ -61,10 +57,10 @@ export default function Hero() {
             hidden: { opacity: 0, y: 20 },
             visible: { opacity: 1, y: 0 },
           }}
-          className="text-3xl sm:text-5xl md:text-6xl font-bold tracking-tight mb-3 lg:mb-6 text-white-100 leading-[1.12]"
+          className="text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold tracking-tight mb-3 lg:mb-6 text-white-100 leading-[1.12]"
         >
           Empowering Early Stage <br className="max-sm:hidden" />
-          Startups to Succeed
+          <HighlightWords words={["Startups", "to", "Succeed"]} />
         </motion.h1>
 
         <motion.p
@@ -103,27 +99,53 @@ export default function Hero() {
             </Button>
           </Link>
         </motion.div>
+        <Link className="mt-16" href={"/#programs-hero"}>
+          <motion.div
+            variants={{
+              hidden: { opacity: 0, y: 15 },
+              visible: { opacity: 1, y: 0, transition: { delay: 0.4 } },
+            }}
+            className="flex flex-col items-center gap-3 mt-4 cursor-pointer select-none group"
+          >
+            <div className="relative flex items-center justify-center">
+              <svg
+                width="24"
+                height="45"
+                viewBox="0 0 24 45"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+                className="w-6 h-auto transition-colors"
+              >
+                <rect
+                  x="0.379518"
+                  y="0.379518"
+                  width="23.241"
+                  height="44.241"
+                  rx="11.6205"
+                  className="stroke-white/40 group-hover:stroke-brand transition-colors duration-300"
+                  strokeWidth="0.759036"
+                />
+                <motion.path
+                  animate={{
+                    y: [0, 1, 0],
+                    opacity: [0.5, 1, 0.5],
+                  }}
+                  transition={{
+                    duration: 2,
+                    repeat: Infinity,
+                    ease: "easeInOut",
+                  }}
+                  d="M12.5 11C12.5 10.7239 12.2761 10.5 12 10.5C11.7239 10.5 11.5 10.7239 11.5 11L12.5 11ZM11.6464 35.3536C11.8417 35.5488 12.1583 35.5488 12.3536 35.3536L15.5355 32.1716C15.7308 31.9763 15.7308 31.6597 15.5355 31.4645C15.3403 31.2692 15.0237 31.2692 14.8284 31.4645L12 34.2929L9.17157 31.4645C8.97631 31.2692 8.65973 31.2692 8.46447 31.4645C8.2692 31.6597 8.2692 31.9763 8.46447 32.1716L11.6464 35.3536ZM11.5 11L11.5 35L12.5 35L12.5 11L11.5 11Z"
+                  className="fill-white group-hover:fill-brand transition-colors duration-300"
+                />
+              </svg>
+            </div>
+            <span className="text-xs tracking-wider text-muted font-light transition-colors duration-300 group-hover:text-brand">
+              Scroll Down
+            </span>
+          </motion.div>
+        </Link>
       </motion.div>
-
-      <div className="container max-sm:hidden">
-        <Image
-          width={1501}
-          height={769}
-          src={"/steps-hero.webp"}
-          alt="hero image"
-          priority
-        />
-      </div>
-      <div className="container sm:hidden">
-        <Image
-          width={644}
-          height={455}
-          className="rounded-xl"
-          src={"/steps-hero-mobile.webp"}
-          alt="hero image"
-          priority
-        />
-      </div>
     </section>
   );
 }

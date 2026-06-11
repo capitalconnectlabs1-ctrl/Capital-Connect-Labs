@@ -32,9 +32,8 @@ export default function Footer() {
             </Link>
 
             <p className="text-muted md:text-base font-light leading-relaxed max-w-sm">
-              Tailored capital advisory, custom co-investment frameworks, and
-              strategic ecosystem design for family offices, corporate
-              innovation hubs, and growth-stage ventures.
+              Capital Connect Labs is an incubator and accelerator platform
+              designed to support startups from ideation to growth.
             </p>
 
             <div className="flex items-center gap-3">
@@ -94,18 +93,18 @@ export default function Footer() {
             <ul className="space-y-3.5 text-base text-muted font-normal">
               <li>
                 <a
-                  href="/#investors"
+                  href="/for-investors"
                   className="hover:text-brand transition-colors"
                 >
-                  Investors
+                  For Investors
                 </a>
               </li>
               <li>
                 <a
-                  href="/#partners"
+                  href="/for-founder"
                   className="hover:text-brand transition-colors"
                 >
-                  Partners
+                  For Founder
                 </a>
               </li>
               <li>
@@ -130,14 +129,6 @@ export default function Footer() {
                   className="hover:text-brand transition-colors"
                 >
                   Customer Support
-                </a>
-              </li>
-              <li>
-                <a
-                  href="/privacy-policies"
-                  className="hover:text-brand transition-colors"
-                >
-                  Terms & Conditions
                 </a>
               </li>
               <li>
