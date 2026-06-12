@@ -19,12 +19,12 @@ export default function HighlightWords({ words }: Props) {
   }, [words.length]);
 
   return (
-    <h1 className="text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold flex flex-wrap justify-center gap-x-4 gap-y-3">
+    <p className="text-3xl sm:text-5xl md:text-6xl font-bold flex flex-wrap justify-center gap-x-2 gap-y-0">
       {words.map((word, index) => {
         const isActive = index === active;
 
         return (
-          <span key={word} className="relative inline-block mb-4">
+          <span key={word} className="relative inline-block">
             <motion.span
               className={`transition-colors duration-500 ${
                 isActive ? "text-brand" : "text-white"
@@ -54,6 +54,6 @@ export default function HighlightWords({ words }: Props) {
           </span>
         );
       })}
-    </h1>
+    </p>
   );
 }

@@ -6,6 +6,7 @@ import Link from "next/link";
 import Badge from "./common/badge";
 import { Group, ArrowRight } from "lucide-react";
 import { TEAM_MEMBERS } from "@/utils/our-team";
+import LeadershipIllustration from "@/constants/leadership";
 
 export default function LeadershipTeam() {
   return (
@@ -29,15 +30,8 @@ export default function LeadershipTeam() {
           </p>
         </div>
 
-        <div className="lg:col-span-5 w-full h-65 md:h-100 relative rounded-2xl overflow-hidden border border-gray-2/40">
-          <Image
-            src="/leadershipteam.webp"
-            alt="Capital Connect Labs Leadership Team"
-            fill
-            sizes="(max-width: 1280px) 50vw, 40vw"
-            className="object-cover"
-            priority
-          />
+        <div className="lg:col-span-5 w-full h-65 md:h-100 relative rounded-2xl overflow-hidden">
+          <LeadershipIllustration />
         </div>
       </div>
 

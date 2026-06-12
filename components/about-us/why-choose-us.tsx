@@ -15,7 +15,7 @@ export function WhyChooseUs({ advantageList, metricsList }: WhyChooseUsProps) {
       whileInView="visible"
       viewport={{ once: true, margin: "-100px" }}
       variants={animationVarients.container}
-      className="space-y-8 lg:space-y-12"
+      className="space-y-8 lg:space-y-12 pt-30"
     >
       <SectionHeader
         badgeText="Why CCL"

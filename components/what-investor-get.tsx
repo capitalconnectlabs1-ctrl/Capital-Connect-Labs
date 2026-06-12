@@ -1,5 +1,11 @@
 "use client";
 
+import { useState } from "react";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Pagination } from "swiper/modules";
+import type { Swiper as SwiperType } from "swiper";
+import "swiper/css";
+
 import {
   CalendarDays,
   PieChart,
@@ -106,49 +112,96 @@ const investorBenefits = [
 ];
 
 export default function WhatInvestorsGet() {
-  return (
-    <section id="investors" className="w-full lg:pb-30 scroll-mt-12 relative">
-      <div className="container">
-        <div className="relative mt-6 space-y-6">
-          {investorBenefits.map((benefit, idx) => {
-            const IconComponent = benefit.icon;
-            const topOffset = 120 + idx * 24;
+  const [activeIndex, setActiveIndex] = useState(0);
+  const [swiperRef, setSwiperRef] = useState<SwiperType | null>(null);
 
-            return (
-              <div
-                key={benefit.id}
-                className="sticky w-full flex justify-center"
-                style={{
-                  top: `${topOffset}px`,
-                }}
-              >
-                <div className="w-full bg-gray-1 border border-gray-2 p-6 sm:p-8 lg:p-10 rounded-3xl transition-transform duration-300 shadow-xl backdrop-blur-md">
-                  <div className="mb-6 flex items-center justify-between">
-                    <span className="text-xs uppercase tracking-wider text-muted font-semibold opacity-60">
-                      Benefits Platform • 0{idx + 1}
-                    </span>
-                    <div className="size-12 rounded-2xl flex items-center justify-center border border-brand/20 bg-brand/5 text-brand shadow-sm">
-                      <IconComponent className="size-6" />
+  return (
+    <section
+      id="investors"
+      className="w-full pb-20 lg:pb-30 scroll-mt-12 relative"
+    >
+      <div className="container">
+        <div className="relative mt-8 w-full">
+          <Swiper
+            modules={[Pagination]}
+            spaceBetween={24}
+            autoHeight={false}
+            touchStartPreventDefault={false}
+            onSwiper={setSwiperRef}
+            onSlideChange={(swiper) => setActiveIndex(swiper.activeIndex)}
+            breakpoints={{
+              0: {
+                slidesPerView: 1,
+                spaceBetween: 16,
+              },
+              768: {
+                slidesPerView: 2,
+                spaceBetween: 20,
+              },
+              1024: {
+                slidesPerView: 3,
+                spaceBetween: 24,
+              },
+            }}
+            className="w-full flex items-stretch overflow-hidden"
+          >
+            {investorBenefits.map((benefit, idx) => {
+              const IconComponent = benefit.icon;
+              return (
+                <SwiperSlide
+                  key={`slide-${benefit.id}`}
+                  className="h-auto flex py-2"
+                >
+                  <div className="w-full h-full bg-gray-1 border min-h-97 border-gray-2 p-6 sm:p-8 rounded-3xl shadow-xl backdrop-blur-md flex flex-col justify-between flex-1">
+                    <div>
+                      <div className="mb-6 flex items-center justify-between">
+                        <span className="text-sm text-muted font-semibold opacity-60">
+                          Benefits Platform • 0{idx + 1}
+                        </span>
+                        <div className="size-12 rounded-2xl flex items-center justify-center border border-brand/20 bg-brand/5 text-brand shadow-sm">
+                          <IconComponent className="size-6" />
+                        </div>
+                      </div>
+
+                      <h3 className="text-xl font-bold text-foreground mb-4 tracking-tight">
+                        {benefit.title}
+                      </h3>
+
+                      <ul className="space-y-3">
+                        {benefit.bullets.map((bullet, bIdx) => (
+                          <li
+                            key={bIdx}
+                            className="flex items-start gap-3 text-sm text-muted font-normal leading-relaxed"
+                          >
+                            <span className="mt-2 size-1.5 rounded-full bg-brand shrink-0" />
+                            <span className="opacity-90">{bullet}</span>
+                          </li>
+                        ))}
+                      </ul>
                     </div>
                   </div>
-                  <h3 className="text-xl sm:text-2xl lg:text-3xl font-bold text-foreground mb-6 tracking-tight">
-                    {benefit.title}
-                  </h3>
-                  <ul className="space-y-4">
-                    {benefit.bullets.map((bullet, bIdx) => (
-                      <li
-                        key={bIdx}
-                        className="flex items-start gap-3.5 text-base lg:text-lg text-muted font-normal leading-relaxed"
-                      >
-                        <span className="mt-2.5 size-1.5 rounded-full bg-brand shrink-0" />
-                        <span className="opacity-90">{bullet}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              </div>
-            );
-          })}
+                </SwiperSlide>
+              );
+            })}
+          </Swiper>
+
+          <div className="flex items-center justify-center gap-2.5 mt-4 sm:mt-10 w-full">
+            {investorBenefits.map((_, idx) => {
+              const isActive = activeIndex === idx;
+              return (
+                <button
+                  key={`dot-nav-${idx}`}
+                  onClick={() => swiperRef?.slideTo(idx)}
+                  className={`size-2.5 rounded-full transition-all duration-300 focus:outline-none cursor-pointer ${
+                    isActive
+                      ? "bg-brand scale-110 opacity-100"
+                      : "bg-gray-300 opacity-40"
+                  }`}
+                  aria-label={`Go to slide ${idx + 1}`}
+                />
+              );
+            })}
+          </div>
         </div>
       </div>
     </section>

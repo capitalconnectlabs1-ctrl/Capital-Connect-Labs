@@ -64,7 +64,7 @@ export default function FocusAreas({
       whileInView="visible"
       viewport={{ once: true, margin: "-100px" }}
       variants={animationVarients.container}
-      className="space-y-8 lg:space-y-12 py-30 overflow-hidden w-full"
+      className="space-y-8 lg:space-y-12 pb-30 overflow-hidden w-full"
     >
       <SectionHeader
         badgeText="Focus Areas"
@@ -75,12 +75,12 @@ export default function FocusAreas({
 
       <div className="w-full">
         <motion.div variants={animationVarients.fadeInUp} className="relative">
-          <div className="flex flex-col w-full transform -rotate-1 origin-center">
+          <div className="flex flex-col w-full transform origin-center">
             <div className="flex overflow-hidden w-full">
               <motion.div
-                animate={{ x: ["0%", "-33.33%"] }}
+                animate={{ x: ["0%", "-10.33%"] }}
                 transition={{ ease: "linear", duration: 18, repeat: Infinity }}
-                className="flex flex-nowrap gap-5 shrink-0 pr-5"
+                className="flex flex-nowrap gap-5 shrink-0 py-3 pr-5"
               >
                 {doubledSectors.map((sector, i) => (
                   <MarqueeCard key={`row-${i}`} text={sector} />

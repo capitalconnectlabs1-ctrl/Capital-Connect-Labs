@@ -55,9 +55,9 @@ const page = () => {
             }}
             className="text-3xl sm:text-5xl md:text-6xl font-bold tracking-tight mb-3 lg:mb-6 text-white-100 leading-[1.12]"
           >
-            What Investors Get in Addition to
-            <br />
-            <HighlightWords words={["Investmention", "Opportunities"]} />
+            What Investors Get in
+            <br className="max-sm:hidden" />
+            <HighlightWords words={["Addition", "to", "Investmention"]} />
           </motion.h1>
 
           <motion.p

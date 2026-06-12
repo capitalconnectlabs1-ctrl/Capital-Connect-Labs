@@ -1,186 +1,150 @@
 "use client";
 
-import { useState, useEffect, useRef } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, Variants } from "framer-motion";
 import Image from "next/image";
 import BusinessModelIllustration from "@/utils/bussiness-model-svg";
 import { sliderCards, topCards } from "@/utils/why-startup-fails";
 
-const chunkArray = (arr: typeof sliderCards, size: number) => {
-  return Array.from({ length: Math.ceil(arr.length / size) }, (_, i) =>
-    arr.slice(i * size, i * size + size),
-  );
+const viewportConfig = { once: true, amount: 0.15 };
+
+const cardVariants: Variants = {
+  hidden: { opacity: 0, y: 30 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.6,
+      ease: [0.215, 0.61, 0.355, 1],
+    },
+  },
 };
 
 export default function WhyStartupsFail() {
-  const [currentIndex, setCurrentIndex] = useState(0);
-  const pairs = chunkArray(sliderCards, 2);
-  const AUTOPLAY_TIME = 4000;
-  const timerRef = useRef<NodeJS.Timeout | null>(null);
-
-  const resetTimer = () => {
-    if (timerRef.current) clearInterval(timerRef.current);
-    timerRef.current = setInterval(() => {
-      setCurrentIndex((prev) => (prev + 1) % pairs.length);
-    }, AUTOPLAY_TIME);
-  };
-
-  useEffect(() => {
-    resetTimer();
-    return () => {
-      if (timerRef.current) clearInterval(timerRef.current);
-    };
-  }, [pairs.length]);
-
-  const handleDragEnd = (event: any, info: any) => {
-    const swipeThreshold = 50;
-    if (info.offset.x < -swipeThreshold) {
-      setCurrentIndex((prev) => (prev + 1) % pairs.length);
-      resetTimer();
-    } else if (info.offset.x > swipeThreshold) {
-      setCurrentIndex((prev) => (prev - 1 + pairs.length) % pairs.length);
-      resetTimer();
-    }
-  };
-
-  const handleProgressClick = (idx: number) => {
-    setCurrentIndex(idx);
-    resetTimer();
-  };
-
   return (
-    <section id="risk" className="w-full scroll-mt-48 relative overflow-hidden">
-      <div className="container relative z-10">
-        <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-12 gap-4 lg:gap-6">
+    <section id="risk" className="w-full scroll-mt-48 relative">
+      <div className="absolute top-0 -left-24 -translate-x-1/2 size-125 bg-brand/10 blur-[120px] rounded-full pointer-events-none" />
+      <div className="absolute bottom-0 -right-24 size-75 bg-emerald-500/10 blur-[100px] rounded-full pointer-events-none" />
+
+      <div className="container relative z-10 px-4">
+        {/* Top Cards Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-12 gap-5 lg:gap-6">
           {topCards.map((card, idx) => (
             <motion.div
               key={idx}
-              initial={{ opacity: 0, y: 24 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, amount: 0.2 }}
-              transition={{
-                duration: 0.45,
-                delay: idx * 0.08,
-                ease: "easeOut",
+              variants={cardVariants}
+              initial="hidden"
+              whileInView="visible"
+              viewport={viewportConfig}
+              whileHover={{
+                y: -6,
+                borderColor: "var(--color-gray-1, rgba(255,255,255,0.15))",
               }}
-              whileHover={{ y: -4 }}
-              className={`${card.colSpan} ${card.cardPadding} max-lg:p-4! bg-gray-1 border border-gray-2 rounded-2xl flex flex-col justify-between transition-colors duration-300 lg:min-h-110`}
+              className={`${card.colSpan} ${card.cardPadding} max-lg:p-5 bg-gray-1/40 backdrop-blur-md border border-gray-2/60 rounded-2xl flex flex-col justify-between transition-all duration-300 lg:min-h-115 relative overflow-hidden group`}
             >
-              <div className="space-y-3 text-center">
-                <h3 className="font-bold text-foreground tracking-tight text-lg">
+              <div className="absolute inset-0 bg-radial-gradient opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none absolute-glow" />
+              <div className="space-y-3 text-center relative z-10">
+                <h3 className="font-bold text-foreground tracking-tight text-lg sm:text-xl">
                   {card.title}
                 </h3>
-                <p className="font-normal leading-relaxed text-base text-muted">
+                <p className="font-normal leading-relaxed text-sm sm:text-base text-muted/90">
                   {card.desc}
                 </p>
               </div>
-              {card.useCustomIllustration ? (
-                <BusinessModelIllustration />
-              ) : (
-                <motion.div
-                  animate={{ y: [0, card.floatY, 0] }}
-                  transition={{
-                    duration: card.floatDuration,
-                    repeat: Infinity,
-                    repeatType: "loop",
-                    ease: "easeInOut",
-                    delay: idx * 0.3,
-                  }}
-                  className="w-full relative overflow-hidden mt-6 h-48"
-                >
-                  <Image
-                    src={card.imgSrc}
-                    alt={card.title}
-                    fill
-                    sizes="(max-width: 1280px) 100vw, 33vw"
-                    className="object-contain p-2"
-                  />
-                </motion.div>
-              )}
+
+              <div className="relative z-10 w-full flex justify-center items-center mt-6">
+                {card.useCustomIllustration ? (
+                  <div className="w-full flex justify-center h-48 items-center">
+                    <BusinessModelIllustration />
+                  </div>
+                ) : (
+                  <motion.div
+                    animate={{ y: [0, card.floatY, 0] }}
+                    transition={{
+                      duration: card.floatDuration,
+                      repeat: Infinity,
+                      repeatType: "loop",
+                      ease: "easeInOut",
+                      delay: idx * 0.3,
+                    }}
+                    className="w-full relative overflow-hidden h-48"
+                  >
+                    <Image
+                      src={card.imgSrc}
+                      alt={card.title}
+                      fill
+                      sizes="(max-width: 1280px) 100vw, 33vw"
+                      className="object-contain p-2 filter"
+                    />
+                  </motion.div>
+                )}
+              </div>
             </motion.div>
           ))}
         </div>
-        <div className="mt-4 lg:mt-6 relative select-none">
-          <div className="overflow-hidden min-h-115 sm:min-h-85 md:min-h-70 lg:min-h-72 xl:min-h-65 flex items-stretch touch-pan-y">
-            <AnimatePresence mode="wait">
-              <motion.div
-                key={currentIndex}
-                drag="x"
-                dragConstraints={{ left: 0, right: 0 }}
-                dragElastic={0.2}
-                onDragEnd={handleDragEnd}
-                initial={{ opacity: 0, x: 30 }}
-                animate={{ opacity: 1, x: 0 }}
-                exit={{ opacity: 0, x: -30 }}
-                transition={{ duration: 0.35, ease: "easeInOut" }}
-                className="grid grid-cols-1 lg:grid-cols-2 gap-4 lg:gap-6 w-full items-stretch cursor-grab active:cursor-grabbing"
-              >
-                {pairs[currentIndex].map((card, idx) => (
-                  <div
-                    key={idx}
-                    className="bg-gray-1 border border-gray-2 p-5 sm:p-6 lg:p-8 rounded-2xl flex flex-col justify-start w-full h-full transition-colors duration-300 pointer-events-none"
-                  >
-                    {card.type === "wide" ? (
-                      <div className="space-y-3 sm:space-y-4">
-                        <h3 className="text-lg sm:text-xl font-bold text-foreground tracking-tight leading-snug">
-                          {card.title}
-                        </h3>
-                        <p className="text-muted text-sm sm:text-base lg:text-lg font-light leading-relaxed opacity-90">
-                          {card.desc}
-                        </p>
-                      </div>
+
+        {/* Bottom Cards Row (Problem Statement Area) */}
+        <div className="mt-5 lg:mt-6">
+          {/* Swapped grid utilities for flex utilities on desktop (lg:) to allow centering via lg:justify-center */}
+          <div className="flex flex-col md:grid md:grid-cols-2 lg:flex lg:flex-row lg:flex-wrap lg:justify-center gap-5 lg:gap-6 items-stretch">
+            {sliderCards.map((card, idx) => {
+              const isWide = card.type === "wide";
+
+              {
+                /* 
+                Calculates responsive widths manually for large viewports so flex items wrap correctly.
+                lg:w-[calc(50%-12px)] gives a perfect 2-item row split while accounting for your 24px gap.
+                lg:w-[calc(33.333%-16px)] gives a perfect 3-item row split.
+              */
+              }
+              const gridSpan = isWide
+                ? "w-full md:col-span-2 lg:w-[calc(50%-12px)]"
+                : "w-full md:col-span-1 lg:w-[calc(33.333%-16px)]";
+
+              const gradientStyles = isWide
+                ? "bg-gradient-to-br from-gray-1/60 via-gray-1/40 to-brand/5 border-brand/20"
+                : "bg-gray-1/30 backdrop-blur-md border-gray-2/60";
+
+              return (
+                <motion.div
+                  key={idx}
+                  variants={cardVariants}
+                  initial="hidden"
+                  whileInView="visible"
+                  viewport={viewportConfig}
+                  whileHover={{
+                    y: -6,
+                    borderColor: "rgba(255, 255, 255, 0.2)",
+                  }}
+                  className={`${gridSpan} ${gradientStyles} border p-6 sm:p-8 rounded-2xl flex flex-col justify-between transition-all duration-300 group relative overflow-hidden`}
+                >
+                  <div className="absolute inset-0 bg-linear-to-tr from-transparent via-transparent to-white/2 pointer-events-none" />
+
+                  <div className="space-y-4 relative z-10 w-full">
+                    <h3 className="text-lg sm:text-xl font-bold text-foreground tracking-tight leading-snug group-hover:text-brand transition-colors duration-300">
+                      {card.title}
+                    </h3>
+
+                    {isWide ? (
+                      <p className="text-muted text-sm sm:text-base font-normal leading-relaxed text-balance">
+                        {card.desc}
+                      </p>
                     ) : (
-                      <div className="space-y-3 sm:space-y-4">
-                        <h3 className="text-lg sm:text-xl font-bold text-foreground tracking-tight leading-snug">
-                          {card.title}
-                        </h3>
-                        <ul className="space-y-2.5 sm:space-y-3">
-                          {card.points?.map((point, pIdx) => (
-                            <li
-                              key={pIdx}
-                              className="flex items-start gap-2.5 text-sm sm:text-base lg:text-lg text-muted font-normal leading-relaxed"
-                            >
-                              <span className="mt-2.5 size-1.5 rounded-full bg-brand shrink-0" />
-                              <span>{point}</span>
-                            </li>
-                          ))}
-                        </ul>
-                      </div>
+                      <ul className="space-y-3 pt-1">
+                        {card.points?.map((point, pIdx) => (
+                          <li
+                            key={pIdx}
+                            className="flex items-start gap-3 text-sm sm:text-base text-muted font-normal leading-relaxed"
+                          >
+                            <span className="mt-2 size-2 rounded-full bg-linear-to-r from-brand to-emerald-400 shrink-0 shadow-[0_0_8px_var(--color-brand)]" />
+                            <span className="text-muted/90">{point}</span>
+                          </li>
+                        ))}
+                      </ul>
                     )}
                   </div>
-                ))}
-              </motion.div>
-            </AnimatePresence>
-          </div>
-
-          {/* Screenshot-Matched Clickable Progress Line Indicator */}
-          <div className="w-full flex gap-1.5 mt-4 lg:mt-6 px-0.5">
-            {pairs.map((_, dotIdx) => (
-              <button
-                key={dotIdx}
-                onClick={() => handleProgressClick(dotIdx)}
-                className="h-2 flex-1 bg-gray-2/40 rounded-full overflow-hidden relative cursor-pointer group focus:outline-none"
-                aria-label={`Go to slide ${dotIdx + 1}`}
-              >
-                {/* Hover state for better UX */}
-                <div className="absolute inset-0 bg-gray-2/20 opacity-0 group-hover:opacity-100 transition-opacity" />
-
-                {currentIndex === dotIdx && (
-                  <motion.div
-                    initial={{ width: "0%" }}
-                    animate={{ width: "100%" }}
-                    transition={{
-                      duration: AUTOPLAY_TIME / 1000,
-                      ease: "linear",
-                    }}
-                    className="absolute top-0 left-0 h-full bg-brand"
-                  />
-                )}
-                {dotIdx < currentIndex && (
-                  <div className="absolute top-0 left-0 h-full w-full bg-brand" />
-                )}
-              </button>
-            ))}
+                </motion.div>
+              );
+            })}
           </div>
         </div>
       </div>

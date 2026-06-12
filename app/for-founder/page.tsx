@@ -54,7 +54,7 @@ const page = () => {
             className="text-3xl sm:text-5xl md:text-6xl font-bold tracking-tight mb-3 lg:mb-6 text-white-100 leading-[1.12]"
           >
             What Founders Get in
-            <br />
+            <br className="max-sm:hidden" />
             <HighlightWords words={["Addition", "to", "Funding"]} />
           </motion.h1>
 

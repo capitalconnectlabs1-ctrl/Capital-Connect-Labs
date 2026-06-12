@@ -3,6 +3,7 @@ import { useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import Button from "./button";
 
 const NAV_LINKS = [
@@ -16,6 +17,7 @@ const NAV_LINKS = [
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
+  const pathname = usePathname();
 
   return (
     <nav>
@@ -33,15 +35,30 @@ export default function Navbar() {
           </Link>
 
           <div className="hidden lg:flex items-center gap-8 text-muted font-medium">
-            {NAV_LINKS.map((link) => (
-              <Link
-                key={link.label}
-                href={link.href}
-                className="hover:text-white-pure transition-colors"
-              >
-                {link.label}
-              </Link>
-            ))}
+            {NAV_LINKS.map((link) => {
+              const isActive = pathname === link.href;
+              return (
+                <Link
+                  key={link.label}
+                  href={link.href}
+                  className={`relative py-1 transition-colors ${
+                    isActive ? "text-brand" : "hover:text-white-pure"
+                  }`}
+                >
+                  {link.label}
+                  <motion.span
+                    className="absolute bottom-0 left-0 h-0.5 w-full bg-brand rounded-full"
+                    initial={false}
+                    animate={{
+                      scaleX: isActive ? 1 : 0,
+                      opacity: isActive ? 1 : 0,
+                    }}
+                    transition={{ duration: 0.25, ease: "easeInOut" }}
+                    style={{ transformOrigin: "left" }}
+                  />
+                </Link>
+              );
+            })}
           </div>
 
           <div className="hidden lg:flex items-center">
@@ -93,16 +110,27 @@ export default function Navbar() {
             className="lg:hidden fixed top-28 left-1/2 -translate-x-1/2 z-999 w-[calc(100vw-48px)] rounded-xl border border-gray-1 bg-[#0F0F0F] px-5 py-5 shadow-xl"
           >
             <div className="flex flex-col gap-4 text-muted font-medium">
-              {NAV_LINKS.map((link) => (
-                <Link
-                  key={link.label}
-                  href={link.href}
-                  onClick={() => setIsOpen(false)}
-                  className="py-2 hover:text-brand transition-colors"
-                >
-                  {link.label}
-                </Link>
-              ))}
+              {NAV_LINKS.map((link) => {
+                const isActive = pathname === link.href;
+                return (
+                  <Link
+                    key={link.label}
+                    href={link.href}
+                    onClick={() => setIsOpen(false)}
+                    className={`relative py-2 transition-colors ${
+                      isActive ? "text-brand" : "hover:text-brand"
+                    }`}
+                  >
+                    {link.label}
+                    <motion.span
+                      className="absolute bottom-0 left-0 h-[1.5px] bg-brand rounded-full"
+                      initial={false}
+                      animate={{ width: isActive ? "100%" : "0%" }}
+                      transition={{ duration: 0.25, ease: "easeInOut" }}
+                    />
+                  </Link>
+                );
+              })}
               <Link
                 href="/customer-support"
                 onClick={() => setIsOpen(false)}

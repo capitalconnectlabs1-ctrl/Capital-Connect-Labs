@@ -1,10 +1,9 @@
-// components/about-us/support-offer-card.tsx
 import { motion } from "framer-motion";
 import { LucideIcon } from "lucide-react";
 import { animationVarients } from "@/constants/animations";
 
 interface SupportOfferCardProps {
-  icon: LucideIcon; // Changed from string to LucideIcon
+  icon: LucideIcon;
   title: string;
   desc: string;
 }

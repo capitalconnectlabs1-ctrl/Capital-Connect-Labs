@@ -1,4 +1,3 @@
-import { motion } from "framer-motion";
 import Link from "next/link";
 import { CheckCircle2, LucideIcon } from "lucide-react";
 import Tilt from "react-parallax-tilt";
