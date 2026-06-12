@@ -9,8 +9,8 @@ import Button from "./button";
 const NAV_LINKS = [
   { label: "About Us", href: "/about-us" },
   { label: "Problem Statement", href: "/problem-statement" },
-  { label: "For Founder", href: "/for-founder" },
-  { label: "For Investor", href: "/for-investor" },
+  { label: "For Founders", href: "/for-founder" },
+  { label: "For Investors", href: "/for-investor" },
   { label: "Our Team", href: "/our-team" },
   { label: "Privacy Policy", href: "/privacy-policies" },
 ];
@@ -20,7 +20,7 @@ export default function Navbar() {
   const pathname = usePathname();
 
   return (
-    <nav>
+    <nav className="relative z-[999]">
       <div className="container bg-background/75 backdrop-blur-md border rounded-xl border-gray-2/80 transition-all duration-300">
         <div className="flex items-center justify-between h-20">
           <Link href="/" className="flex items-center gap-2">
@@ -62,11 +62,14 @@ export default function Navbar() {
           </div>
 
           <div className="hidden lg:flex items-center">
-            <Link href="/customer-support">
+            <a
+              href="https://docs.google.com/forms/d/e/1FAIpQLSc4RkU639a2KOtd4AbhENoWo4Jls9Vvut5i098iu9ibc9Lb0A/viewform?pli=1"
+              target="_blank"
+            >
               <Button variant="primary" className="px-5 py-2.5">
-                Get started
+                Apply Now
               </Button>
-            </Link>
+            </a>
           </div>
 
           <button
@@ -107,7 +110,7 @@ export default function Navbar() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -16 }}
             transition={{ duration: 0.25 }}
-            className="lg:hidden fixed top-28 left-1/2 -translate-x-1/2 z-999 w-[calc(100vw-48px)] rounded-xl border border-gray-1 bg-[#0F0F0F] px-5 py-5 shadow-xl"
+            className="lg:hidden fixed top-28 left-1/2 -translate-x-1/2 z-1 w-[calc(100vw-48px)] rounded-xl border border-gray-1 bg-[#0F0F0F] px-5 py-5 shadow-xl"
           >
             <div className="flex flex-col gap-4 text-muted font-medium">
               {NAV_LINKS.map((link) => {
@@ -131,15 +134,15 @@ export default function Navbar() {
                   </Link>
                 );
               })}
-              <Link
-                href="/customer-support"
-                onClick={() => setIsOpen(false)}
+              <a
+                href="https://docs.google.com/forms/d/e/1FAIpQLSc4RkU639a2KOtd4AbhENoWo4Jls9Vvut5i098iu9ibc9Lb0A/viewform?pli=1"
+                target="_blank"
                 className="mt-2"
               >
                 <Button variant="outline" className="w-full">
-                  Get started
+                  Apply Now
                 </Button>
-              </Link>
+              </a>
             </div>
           </motion.div>
         )}

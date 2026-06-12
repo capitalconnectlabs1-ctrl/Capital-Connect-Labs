@@ -53,18 +53,22 @@ export function HeroSection() {
           }}
           className="flex items-center justify-center gap-2 sm:gap-4 w-full"
         >
-          <Button className="w-fit! text-nowrap" variant="primary">
-            Become a partner
-          </Button>
-
-          <Link
-            href="/customer-support?inquiry=incubator"
-            className="inline-block"
+          <a
+            href="https://docs.google.com/forms/d/e/1FAIpQLSfp4ePohYQGlO4KQB4afsgKl2sX235-IKOHMK15mo0e3MsHww/viewform"
+            target="_blank"
+          >
+            <Button className="w-fit! text-nowrap" variant="primary">
+              For Investors
+            </Button>
+          </a>
+          <a
+            href="https://docs.google.com/forms/d/e/1FAIpQLSc4RkU639a2KOtd4AbhENoWo4Jls9Vvut5i098iu9ibc9Lb0A/viewform?pli=1"
+            target="_blank"
           >
             <Button className="w-fit! text-nowrap" variant="secondary">
-              Apply now
+              For Founders
             </Button>
-          </Link>
+          </a>
         </motion.div>
       </motion.div>
     </section>

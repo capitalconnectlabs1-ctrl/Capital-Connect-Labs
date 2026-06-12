@@ -47,9 +47,9 @@ function SupportFormContent() {
   };
 
   return (
-    <div className="grid grid-cols-1 lg:grid-cols-12 gap-4 xl:gap-6 items-start mt-6 lg:mt-12">
-      <div className="lg:col-span-5 space-y-6">
-        <div className="bg-gray-1 border border-gray-2/70 p-4 sm:p-8 rounded-xl space-y-3 lg:space-y-6">
+    <div className="grid grid-cols-1 gap-4 xl:gap-6 items-start mt-6 lg:mt-12">
+      <div className="space-y-6 grid grid-cols-2 gap-6">
+        <div className="bg-gray-1 h-full border border-gray-2/70 p-4 sm:p-8 rounded-xl space-y-3 lg:space-y-6">
           <h3 className="text-xl sm:text-2xl font-bold text-foreground flex items-center gap-2 tracking-tight">
             <LifeBuoy className="size-6 text-brand" /> Hub contact details
           </h3>
@@ -65,9 +65,12 @@ function SupportFormContent() {
               </div>
               <div>
                 <h4 className="text-base text-muted/70">Official inquiries</h4>
-                <p className="text-sm sm:text-base font-medium text-white-100 hover:text-brand transition-colors cursor-pointer mt-0.5">
-                  support@capitalconnectlabs.com
-                </p>
+                <a
+                  href="mailto:contact@capitalconnectslabs.com"
+                  className="text-sm sm:text-base font-medium text-white-100 hover:text-brand transition-colors cursor-pointer mt-0.5"
+                >
+                  contact@capitalconnectslabs.com
+                </a>
               </div>
             </div>
 
@@ -90,170 +93,33 @@ function SupportFormContent() {
               <div>
                 <h4 className="text-base text-muted/70">Headquarters</h4>
                 <p className="text-sm sm:text-base font-medium text-white-100 mt-0.5 leading-relaxed">
-                  Capital Connect Labs Inc., Innovation Ecosystem Hub
+                  Bangalore
                 </p>
               </div>
             </div>
           </div>
         </div>
 
-        <div className="bg-linear-to-br from-brand/5 to-transparent border border-brand/20 p-6 sm:p-8 rounded-xl space-y-3">
-          <h4 className="text-base sm:text-lg font-bold text-brand">
-            Looking for program applications?
-          </h4>
-          <p className="text-muted text-sm leading-relaxed">
-            If you are a founder wanting to apply directly to our next
-            incubation batch, please use the structured portal instead of this
-            generic support form.
-          </p>
-          <div
-            onClick={() => handleExternalNavigation("/portal")}
-            className="text-sm font-bold text-white-100 flex items-center gap-1.5 hover:text-brand cursor-pointer group pt-2 w-fit"
-          >
-            <span>Go to cohort dashboard</span>
-            <ArrowRight className="size-4 transition-transform group-hover:translate-x-1" />
+        <div className="bg-linear-to-br h-full flex flex-col justify-between from-brand/5 to-transparent border border-brand/20 p-6 sm:p-8 rounded-xl space-y-3">
+          <div className="flex flex-col gap-2">
+            <h4 className="text-base sm:text-lg font-bold text-brand">
+              Looking for program applications?
+            </h4>
+            <p className="text-muted text-sm leading-relaxed">
+              If you are a founder wanting to apply directly to our next
+              incubation batch, please use the structured portal instead of this
+              generic support form.
+            </p>
           </div>
-        </div>
-      </div>
-
-      <div className="lg:col-span-7 h-full">
-        <div className="bg-gray-1 border h-full border-gray-2 p-4 md:p-6 lg:p-10 rounded-xl relative overflow-hidden">
-          {submitted ? (
-            <motion.div
-              initial={{ opacity: 0, scale: 0.95 }}
-              animate={{ opacity: 1, scale: 1 }}
-              className="text-center py-16 space-y-4"
-            >
-              <div className="size-16 bg-brand/10 border border-brand/30 rounded-xl flex items-center justify-center mx-auto mb-4">
-                <CheckCircle className="size-8 text-brand" />
-              </div>
-              <h3 className="text-2xl sm:text-3xl font-bold text-white-100">
-                Message received securely
-              </h3>
-              <p className="text-muted text-base sm:text-lg max-w-md mx-auto leading-relaxed">
-                Thank you for connecting. An ecosystem coordinator has been
-                assigned to your ticket and will trace back shortly.
-              </p>
-              <button
-                onClick={() => setSubmitted(false)}
-                className="text-sm font-semibold text-brand hover:underline mt-6 block mx-auto cursor-pointer"
-              >
-                Submit another response
-              </button>
-            </motion.div>
-          ) : (
-            <form
-              onSubmit={handleSubmit}
-              className="h-full flex flex-col gap-6 justify-between"
-            >
-              <div className="space-y-6">
-                <div>
-                  <h3 className="text-base sm:text-2xl font-bold text-foreground mb-1.5 tracking-tight">
-                    Send a secure transmission
-                  </h3>
-                  <p className="text-muted text-sm sm:text-base">
-                    All ecosystem support communications are vaulted and audited
-                    internally.
-                  </p>
-                </div>
-
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 xl:gap-6">
-                  <div className="flex flex-col gap-2">
-                    <label
-                      htmlFor={nameInputId}
-                      className="text-sm font-bold text-muted"
-                    >
-                      Your full name
-                    </label>
-                    <input
-                      id={nameInputId}
-                      name="client-name"
-                      type="text"
-                      required
-                      autoComplete="name"
-                      placeholder="Aman Kumar"
-                      className="w-full bg-gray-2 border border-gray-1 rounded-xl px-4 py-3.5 text-base font-medium text-foreground outline-hidden focus:border-brand transition-colors"
-                      value={formState.name}
-                      onChange={(e) =>
-                        setFormState({ ...formState, name: e.target.value })
-                      }
-                    />
-                  </div>
-                  <div className="flex flex-col gap-2">
-                    <label
-                      htmlFor={emailInputId}
-                      className="text-sm font-bold text-muted"
-                    >
-                      Email address
-                    </label>
-                    <input
-                      id={emailInputId}
-                      name="client-email"
-                      type="email"
-                      required
-                      autoComplete="email"
-                      placeholder="name@agency.com"
-                      className="w-full bg-gray-2 border border-gray-1 rounded-xl px-4 py-3.5 text-base font-medium text-foreground outline-hidden focus:border-brand transition-colors"
-                      value={formState.email}
-                      onChange={(e) =>
-                        setFormState({ ...formState, email: e.target.value })
-                      }
-                    />
-                  </div>
-                </div>
-
-                <div className="flex flex-col gap-2">
-                  <label
-                    htmlFor={subjectInputId}
-                    className="text-sm font-bold text-muted"
-                  >
-                    Subject / Area of inquiry
-                  </label>
-                  <input
-                    id={subjectInputId}
-                    name="transmission-subject"
-                    type="text"
-                    required
-                    placeholder="e.g. Incubation program architecture gaps"
-                    className="w-full bg-gray-2 border border-gray-1 rounded-xl px-4 py-3.5 text-base font-medium text-foreground outline-hidden focus:border-brand transition-colors"
-                    value={formState.subject}
-                    onChange={(e) =>
-                      setFormState({ ...formState, subject: e.target.value })
-                    }
-                  />
-                </div>
-
-                <div className="flex flex-col gap-2">
-                  <label
-                    htmlFor={messageInputId}
-                    className="text-sm font-bold text-muted"
-                  >
-                    Elaborate your message
-                  </label>
-                  <textarea
-                    id={messageInputId}
-                    name="transmission-body"
-                    rows={5}
-                    required
-                    placeholder="Describe your current traction, portfolio needs, or support requests in detail..."
-                    className="w-full bg-gray-2 border border-gray-1 rounded-xl px-4 py-3.5 text-base font-medium text-foreground outline-hidden focus:border-brand transition-colors resize-none"
-                    value={formState.message}
-                    onChange={(e) =>
-                      setFormState({ ...formState, message: e.target.value })
-                    }
-                  />
-                </div>
-              </div>
-              <Button
-                type="submit"
-                variant="primary"
-                className="w-full! justify-center py-4 text-base font-bold rounded-xl"
-              >
-                <span>Dispatch transmission</span>
-                <MessageSquare className="size-5 inline ml-2" />
-              </Button>
-            </form>
-          )}
+          <a
+            href="https://docs.google.com/forms/d/e/1FAIpQLSc4RkU639a2KOtd4AbhENoWo4Jls9Vvut5i098iu9ibc9Lb0A/viewform?pli=1"
+            target="_blank"
+          >
+            <div className="text-sm font-bold text-white-100 flex items-center gap-1.5 hover:text-brand cursor-pointer group pt-2 w-fit">
+              <span>Go to cohort dashboard</span>
+              <ArrowRight className="size-4 transition-transform group-hover:translate-x-1" />
+            </div>
+          </a>
         </div>
       </div>
     </div>
