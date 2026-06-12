@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { DM_Sans } from "next/font/google";
 import "./globals.css";
 import SmoothScroll from "@/components/common/lennis";
+import SplashCursor from "@/components/common/splash-cursor";
 
 const dmSans = DM_Sans({
   subsets: ["latin"],
@@ -69,6 +70,18 @@ export default function RootLayout({
     <html lang="en" className={`${dmSans.variable}`}>
       <body className="font-sans antialiased bg-background text-foreground">
         <SmoothScroll />
+        <SplashCursor
+          DENSITY_DISSIPATION={3.5}
+          VELOCITY_DISSIPATION={1}
+          PRESSURE={0.1}
+          CURL={4}
+          SPLAT_RADIUS={0.2}
+          SPLAT_FORCE={6000}
+          COLOR_UPDATE_SPEED={6}
+          SHADING
+          RAINBOW_MODE={true}
+          COLOR="#A3DC2F"
+        />
         {children}
       </body>
     </html>

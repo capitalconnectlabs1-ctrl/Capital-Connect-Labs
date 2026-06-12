@@ -4,12 +4,9 @@ import Badge from "@/components/common/badge";
 import Button from "@/components/common/button";
 import Footer from "@/components/common/footer";
 import Navbar from "@/components/common/navbar";
-import WhatFoundersGet from "@/components/what-founder-gets";
 import WhatInvestorsGet from "@/components/what-investor-get";
-import WhyStartupsFail from "@/components/why-startups-failed";
 import { motion } from "framer-motion";
-import { Briefcase, GroupIcon, User2 } from "lucide-react";
-import Link from "next/link";
+import { Briefcase } from "lucide-react";
 
 const page = () => {
   const handleScrollDown = () => {
@@ -24,7 +21,6 @@ const page = () => {
       <div className="sticky top-0 z-1000 container pt-6">
         <Navbar />
       </div>
-
       <section
         id="hero-about-us"
         className="relative overflow-hidden scroll-mt-32 lg:min-h-[calc(100vh-106px)] flex gap-24 py-24 flex-col items-center justify-center text-center"

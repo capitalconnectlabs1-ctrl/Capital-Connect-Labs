@@ -135,7 +135,7 @@ export default function WhyStartupsFail() {
                             key={pIdx}
                             className="flex items-start gap-3 text-sm sm:text-base text-muted font-normal leading-relaxed"
                           >
-                            <span className="mt-2 size-2 rounded-full bg-linear-to-r from-brand to-emerald-400 shrink-0 shadow-[0_0_8px_var(--color-brand)]" />
+                            <span className="mt-2 size-2 rounded-full bg-gradient-to-r from-brand to-emerald-400 shrink-0 shadow-[0_0_8px_var(--color-brand)]" />
                             <span className="text-muted/90">{point}</span>
                           </li>
                         ))}

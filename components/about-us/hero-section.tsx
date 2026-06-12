@@ -1,5 +1,4 @@
 import { motion } from "framer-motion";
-import Link from "next/link";
 import Badge from "../common/badge";
 import Button from "../common/button";
 import HighlightWords from "../common/animated-headline";

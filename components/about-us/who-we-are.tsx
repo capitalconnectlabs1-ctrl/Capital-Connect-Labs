@@ -32,7 +32,7 @@ export function WhoWeAre() {
   return (
     <section
       ref={containerRef}
-      className="space-y-6 lg:space-y-12 w-full overflow-hidden"
+      className="space-y-6 py-30 container lg:space-y-12 w-full overflow-hidden"
     >
       <SectionHeader
         badgeText="About Us"

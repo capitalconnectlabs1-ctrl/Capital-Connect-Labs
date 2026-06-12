@@ -1,9 +1,9 @@
 "use client";
 import { motion } from "framer-motion";
-import Link from "next/link";
 import Badge from "./common/badge";
 import Button from "./common/button";
 import HighlightWords from "./common/animated-headline";
+import Image from "next/image";
 
 export default function Hero() {
   const handlePartnerScrollSequence = () => {
@@ -25,9 +25,9 @@ export default function Hero() {
   return (
     <section
       id="hero"
-      className="relative overflow-hidden scroll-mt-32 lg:min-h-[calc(100vh-106px)] flex gap-24 py-24 flex-col items-center justify-center text-center"
+      className="relative scroll-mt-32 lg:min-h-[calc(100vh-106px)] flex gap-24 pt-24 flex-col items-center justify-center text-center"
     >
-      <div className="absolute top-1 left-1/2 -translate-x-1/2 size-100 lg:size-150 bg-brand/30 rounded-full blur-[400px] pointer-events-none z-0 opacity-75" />
+      <div className="absolute top-0 lg:-top-40 left-1/2 -translate-x-1/2 size-100 lg:size-225 bg-radial-glow pointer-events-none z-0 opacity-75" />
       <motion.div
         initial="hidden"
         animate="visible"
@@ -99,6 +99,25 @@ export default function Hero() {
           </a>
         </motion.div>
       </motion.div>
+      <div className="container max-sm:hidden">
+        <Image
+          width={1501}
+          height={769}
+          src={"/steps-hero.png"}
+          alt="hero image"
+          priority
+        />
+      </div>
+      <div className="container sm:hidden">
+        <Image
+          width={644}
+          height={455}
+          className="rounded-xl"
+          src={"/steps-hero-mobile.webp"}
+          alt="hero image"
+          priority
+        />
+      </div>
     </section>
   );
 }

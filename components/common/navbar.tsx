@@ -20,7 +20,7 @@ export default function Navbar() {
   const pathname = usePathname();
 
   return (
-    <nav className="relative z-[999]">
+    <nav className="relative z-999">
       <div className="container bg-background/75 backdrop-blur-md border rounded-xl border-gray-2/80 transition-all duration-300">
         <div className="flex items-center justify-between h-20">
           <Link href="/" className="flex items-center gap-2">
@@ -110,7 +110,7 @@ export default function Navbar() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -16 }}
             transition={{ duration: 0.25 }}
-            className="lg:hidden fixed top-28 left-1/2 -translate-x-1/2 z-1 w-[calc(100vw-48px)] rounded-xl border border-gray-1 bg-[#0F0F0F] px-5 py-5 shadow-xl"
+            className="lg:hidden fixed top-28 left-1/2 -translate-x-1/2 w-[calc(100vw-48px)] z-100 rounded-xl border border-gray-1 bg-[#0F0F0F] px-5 py-5 shadow-xl"
           >
             <div className="flex flex-col gap-4 text-muted font-medium">
               {NAV_LINKS.map((link) => {

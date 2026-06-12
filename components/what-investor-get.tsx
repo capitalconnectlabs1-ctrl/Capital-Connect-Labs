@@ -128,7 +128,7 @@ export default function WhatInvestorsGet() {
             autoHeight={false}
             touchStartPreventDefault={false}
             onSwiper={setSwiperRef}
-            onSlideChange={(swiper) => setActiveIndex(swiper.activeIndex)}
+            onSlideChange={(swiper) => setActiveIndex(swiper.realIndex)}
             breakpoints={{
               0: {
                 slidesPerView: 1,
@@ -143,6 +143,7 @@ export default function WhatInvestorsGet() {
                 spaceBetween: 24,
               },
             }}
+            loop={true}
             className="w-full flex items-stretch overflow-hidden"
           >
             {investorBenefits.map((benefit, idx) => {
@@ -191,7 +192,7 @@ export default function WhatInvestorsGet() {
               return (
                 <button
                   key={`dot-nav-${idx}`}
-                  onClick={() => swiperRef?.slideTo(idx)}
+                  onClick={() => swiperRef?.slideToLoop(idx)}
                   className={`size-2.5 rounded-full transition-all duration-300 focus:outline-none cursor-pointer ${
                     isActive
                       ? "bg-brand scale-110 opacity-100"

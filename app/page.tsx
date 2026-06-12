@@ -1,30 +1,24 @@
 "use client";
 
+import { WhoWeAre } from "@/components/about-us/who-we-are";
 import Footer from "@/components/common/footer";
 import Navbar from "@/components/common/navbar";
-import SplashCursor from "@/components/common/splash-cursor";
 import Hero from "@/components/hero";
+import LeadershipTeam from "@/components/leadership-team";
+import WhatWeLookFor from "@/components/what-we-look-for";
 
 export default function Home() {
   return (
-    <main className="relative h-screen bg-black">
-      <SplashCursor
-        DENSITY_DISSIPATION={3.5}
-        VELOCITY_DISSIPATION={1}
-        PRESSURE={0.1}
-        CURL={4}
-        SPLAT_RADIUS={0.2}
-        SPLAT_FORCE={6000}
-        COLOR_UPDATE_SPEED={6}
-        SHADING
-        RAINBOW_MODE={true}
-        COLOR="#A3DC2F"
-      />
-
-      <div className="relative container z-10 pt-6">
+    <main>
+      <div className="sticky top-0 z-50 container pt-6">
         <Navbar />
       </div>
-      <Hero />
+      <div className="overflow-hidden">
+        <Hero />
+        <WhoWeAre />
+        <WhatWeLookFor />
+        <LeadershipTeam />
+      </div>
       <Footer />
     </main>
   );
