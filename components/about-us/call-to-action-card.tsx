@@ -42,7 +42,7 @@ export function CallToActionCard({
           {desc}
         </p>
       </div>
-      <Link href={ctaLink}>
+      <a target="_blank" href={ctaLink}>
         <button
           className={`w-full text-sm font-bold py-3 rounded-xl transition-all flex items-center justify-center gap-2 ${
             isPrimaryButton
@@ -52,7 +52,7 @@ export function CallToActionCard({
         >
           {ctaText} <ArrowRight className="size-4" />
         </button>
-      </Link>
+      </a>
     </motion.div>
   );
 }

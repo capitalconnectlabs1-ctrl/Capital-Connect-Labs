@@ -14,7 +14,6 @@ import { ProgramCard } from "./program-card";
 import {
   acceleratorFeatures,
   advantageList,
-  evaluationCriteria,
   incubatorFeatures,
   metricsList,
 } from "@/utils/about-us";
@@ -54,7 +53,7 @@ export default function AboutPage() {
                   desc="Perfect for early-stage founders looking to validate their ideas and build their first product."
                   features={incubatorFeatures}
                   ctaText="Apply for Cohort"
-                  ctaLink="/customer-support?inquiry=incubator"
+                  ctaLink="https://docs.google.com/forms/d/e/1FAIpQLSc4RkU639a2KOtd4AbhENoWo4Jls9Vvut5i098iu9ibc9Lb0A/viewform?pli=1"
                 />
                 <ProgramCard
                   icon={TrendingUp}
@@ -63,7 +62,7 @@ export default function AboutPage() {
                   desc="Designed for startups with early traction looking to grow faster and raise funding."
                   features={acceleratorFeatures}
                   ctaText="Scale Your Venture"
-                  ctaLink="/customer-support?inquiry=accelerator"
+                  ctaLink="https://docs.google.com/forms/d/e/1FAIpQLSfp4ePohYQGlO4KQB4afsgKl2sX235-IKOHMK15mo0e3MsHww/viewform"
                   isFeatured={true}
                 />
               </div>
@@ -90,22 +89,23 @@ export default function AboutPage() {
               />
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4 lg:gap-6">
                 <CallToActionCard
-                  icon={Users}
-                  tagline="For Mentors & Investors"
-                  title="Partner With Us"
-                  desc="Gain early access to high-potential startups."
-                  ctaText="Become a Partner"
-                  ctaLink="/customer-support"
-                />
-                <CallToActionCard
                   icon={Rocket}
-                  tagline="For Startups"
+                  tagline="For Founders"
                   title="Ready to Build Something Big?"
-                  desc="Join our next cohort and accelerate your startup journey."
+                  desc="Join our next cohort and accelerate your startup journey with mentorship, funding access, and strategic support."
                   ctaText="Apply Now"
-                  ctaLink="/customer-support?inquiry=incubator"
+                  ctaLink="https://docs.google.com/forms/d/e/1FAIpQLSfp4ePohYQGlO4KQB4afsgKl2sX235-IKOHMK15mo0e3MsHww/viewform"
                   isBrandBorder={true}
                   isPrimaryButton={true}
+                />
+
+                <CallToActionCard
+                  icon={Users}
+                  tagline="For Investors"
+                  title="Invest in High-Potential Startups"
+                  desc="Access curated deal flow and connect with ambitious founders building the next generation of innovative companies."
+                  ctaText="Become an Investor"
+                  ctaLink="https://docs.google.com/forms/d/e/1FAIpQLSc4RkU639a2KOtd4AbhENoWo4Jls9Vvut5i098iu9ibc9Lb0A/viewform?pli=1"
                 />
               </div>
             </motion.section>
